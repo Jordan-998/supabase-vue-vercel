@@ -172,7 +172,10 @@ async function fetchTodos() {
     .select('*')
     .order('created_at', { ascending: false })
 
-  if (!error) {
+  if (error) {
+    console.error('获取待办列表失败:', error)
+    todos.value = []
+  } else {
     todos.value = data || []
   }
 }
@@ -184,11 +187,18 @@ async function addTodo() {
     return
   }
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from('todos')
-    .insert([{ title: newTodoTitle.value.trim() }])
+    .insert([{
+      title: newTodoTitle.value.trim(),
+      user_id: session.value.user.id
+    }])
+    .select()
 
-  if (!error) {
+  if (error) {
+    alert('添加失败：' + error.message)
+    console.error('添加待办失败:', error)
+  } else {
     newTodoTitle.value = ''
     await fetchTodos() // 重新加载列表
   }
