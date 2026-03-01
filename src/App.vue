@@ -100,11 +100,18 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
+console.log('Supabase 配置:', {
+  url: supabaseUrl,
+  hasKey: !!supabaseAnonKey,
+  keyLength: supabaseAnonKey?.length
+})
+
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
 }
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
+console.log('Supabase 客户端已初始化')
 
 // 响应式数据
 const session = ref(null)
@@ -127,14 +134,29 @@ async function checkSession() {
 // 注册
 async function signUp() {
   errorMsg.value = ''
-  const { error } = await supabase.auth.signUp({
+  console.log('开始注册...', { email: email.value.trim() })
+
+  const { data, error } = await supabase.auth.signUp({
     email: email.value.trim(),
-    password: password.value.trim()
+    password: password.value.trim(),
+    options: {
+      emailRedirectTo: window.location.origin
+    }
   })
+
+  console.log('注册结果:', { data, error })
+
   if (error) {
     errorMsg.value = error.message
+    console.error('注册失败:', error)
   } else {
-    alert('注册成功！请查收邮箱验证～')
+    if (data.session) {
+      // 自动登录
+      alert('注册成功！已自动登录')
+      session.value = data.session
+    } else {
+      alert('注册成功！请查收邮箱验证～')
+    }
     email.value = ''
     password.value = ''
   }
@@ -143,13 +165,20 @@ async function signUp() {
 // 登录
 async function signIn() {
   errorMsg.value = ''
+  console.log('开始登录...', { email: email.value.trim() })
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.value.trim(),
     password: password.value.trim()
   })
+
+  console.log('登录结果:', { data, error })
+
   if (error) {
     errorMsg.value = error.message
+    console.error('登录失败:', error)
   } else {
+    alert('登录成功！')
     session.value = data.session
     email.value = ''
     password.value = ''
