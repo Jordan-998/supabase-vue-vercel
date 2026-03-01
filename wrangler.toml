@@ -1,0 +1,8 @@
+name = "supabase-vue-vercel"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
+
+# Environment variables can also be configured here
+# But it's recommended to use the Cloudflare Pages Web UI for sensitive values
+# [vars]
+# VITE_SUPABASE_URL = "https://..."
