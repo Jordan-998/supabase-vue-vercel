@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supabase 连接测试</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      background: #42b983;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3aa876;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .success { color: green; }
+    .error { color: red; }
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Supabase API 测试工具</h1>
+
+  <div class="section">
+    <h2>1. 测试连接</h2>
+    <button onclick="testConnection()">测试 Supabase 连接</button>
+    <pre id="connection-result">等待测试...</pre>
+  </div>
+
+  <div class="section">
+    <h2>2. 测试表访问</h2>
+    <button onclick="testTableAccess()">测试 todos 表访问</button>
+    <pre id="table-result">等待测试...</pre>
+  </div>
+
+  <div class="section">
+    <h2>3. 测试插入数据</h2>
+    <input type="text" id="test-title" placeholder="测试待办内容" value="测试待办">
+    <button onclick="testInsert()">插入测试数据</button>
+    <pre id="insert-result">等待测试...</pre>
+  </div>
+
+  <div class="section">
+    <h2>4. 测试查询数据</h2>
+    <button onclick="testSelect()">查询所有待办</button>
+    <pre id="select-result">等待测试...</pre>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+
+    // Supabase 配置
+    const SUPABASE_URL = 'https://ypgvicuekjtfkmcyhvjj.supabase.co'
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwZ3ZpY3Vla2p0ZmttY3lodmpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwMzEwNTAsImV4cCI6MjA4NzYwNzA1MH0.OZ3-t-jMN-9-cv2RK9NXzY7wPm9Hl7lLWqZza7Z-i2o'
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+    window.testConnection = async function() {
+      const result = document.getElementById('connection-result')
+      try {
+        result.innerHTML = '正在测试连接...'
+        const { data, error } = await supabase.from('todos').select('*').limit(0)
+
+        if (error) {
+          result.innerHTML = `<span class="error">连接失败</span>\n${JSON.stringify(error, null, 2)}`
+        } else {
+          result.innerHTML = `<span class="success">✅ 连接成功！</span>\nSupabase API 可以访问`
+        }
+      } catch (e) {
+        result.innerHTML = `<span class="error">❌ 错误</span>\n${e.message}`
+      }
+    }
+
+    window.testTableAccess = async function() {
+      const result = document.getElementById('table-result')
+      try {
+        result.innerHTML = '正在测试表访问...'
+        const { data, error } = await supabase.from('todos').select('*').limit(1)
+
+        if (error) {
+          result.innerHTML = `<span class="error">❌ 表访问失败</span>\n${JSON.stringify(error, null, 2)}`
+        } else {
+          result.innerHTML = `<span class="success">✅ todos 表可以访问！</span>\n返回数据: ${JSON.stringify(data, null, 2)}`
+        }
+      } catch (e) {
+        result.innerHTML = `<span class="error">❌ 错误</span>\n${e.message}`
+      }
+    }
+
+    window.testInsert = async function() {
+      const result = document.getElementById('insert-result')
+      const title = document.getElementById('test-title').value
+
+      if (!title) {
+        alert('请输入测试内容')
+        return
+      }
+
+      try {
+        result.innerHTML = '正在插入测试数据...'
+
+        // 首先获取当前用户
+        const { data: { user } } = await supabase.auth.getUser()
+
+        if (!user) {
+          result.innerHTML = `<span class="error">❌ 需要先登录</span>\n请先在 Supabase Dashboard 中登录，或者使用测试账户`
+          return
+        }
+
+        const { data, error } = await supabase
+          .from('todos')
+          .insert([{ title: title, user_id: user.id }])
+          .select()
+
+        if (error) {
+          result.innerHTML = `<span class="error">❌ 插入失败</span>\n${JSON.stringify(error, null, 2)}`
+        } else {
+          result.innerHTML = `<span class="success">✅ 插入成功！</span>\n${JSON.stringify(data, null, 2)}`
+        }
+      } catch (e) {
+        result.innerHTML = `<span class="error">❌ 错误</span>\n${e.message}`
+      }
+    }
+
+    window.testSelect = async function() {
+      const result = document.getElementById('select-result')
+      try {
+        result.innerHTML = '正在查询数据...'
+        const { data, error } = await supabase.from('todos').select('*')
+
+        if (error) {
+          result.innerHTML = `<span class="error">❌ 查询失败</span>\n${JSON.stringify(error, null, 2)}`
+        } else {
+          result.innerHTML = `<span class="success">✅ 查询成功！</span>\n找到 ${data.length} 条记录\n${JSON.stringify(data, null, 2)}`
+        }
+      } catch (e) {
+        result.innerHTML = `<span class="error">❌ 错误</span>\n${e.message}`
+      }
+    }
+  </script>
+</body>
+</html>
