@@ -96,9 +96,14 @@
 import { ref, onMounted, watch } from 'vue'
 import { createClient } from '@supabase/supabase-js'
 
-// 初始化 Supabase（替换成你的密钥！）
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://ypgvicuekjtfkmcyhvjj.supabase.co'
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlwZ3ZpY3Vla2p0ZmttY3lodmpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwMzEwNTAsImV4cCI6MjA4NzYwNzA1MH0.OZ3-t-jMN-9-cv2RK9NXzY7wPm9Hl7lLWqZza7Z-i2o'
+// 初始化 Supabase（从环境变量读取密钥）
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase environment variables. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
+}
+
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // 响应式数据
