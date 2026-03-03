@@ -90,7 +90,7 @@ jobs:
         run: npm run build
 
       - name: Run E2E tests
-        run: npm run test:e2e
+        run: npx playwright test --project=chromium
 
       - name: Upload test results
         if: failure()
