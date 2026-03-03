@@ -88,9 +88,14 @@ jobs:
 
       - name: Build application
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       - name: Run E2E tests
         run: npx playwright test --project=chromium
+        env:
+          CI: true
 
       - name: Upload test results
         if: failure()
