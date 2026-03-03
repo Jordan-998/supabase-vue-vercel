@@ -1,0 +1,248 @@
+
+1m 1s
+Run npx playwright test --project=chromium
+  npx playwright test --project=chromium
+  shell: /usr/bin/bash -e {0}
+  env:
+    CI: true
+
+Running 3 tests using 1 worker
+××F××F××F
+
+  1) [chromium] › e2e/vue.spec.ts:4:1 › visits the app root url ────────────────────────────────────
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('h1')
+    Expected: "Vue + Supabase 待办清单"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" with timeout 5000ms
+      - waiting for locator('h1')
+
+
+      4 | test('visits the app root url', async ({ page }) => {
+      5 |   await page.goto('/')
+    > 6 |   await expect(page.locator('h1')).toHaveText('Vue + Supabase 待办清单')
+        |                                    ^
+      7 | })
+      8 |
+      9 | // 测试登录表单存在
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:6:36
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('h1')
+    Expected: "Vue + Supabase 待办清单"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" with timeout 5000ms
+      - waiting for locator('h1')
+
+
+      4 | test('visits the app root url', async ({ page }) => {
+      5 |   await page.goto('/')
+    > 6 |   await expect(page.locator('h1')).toHaveText('Vue + Supabase 待办清单')
+        |                                    ^
+      7 | })
+      8 |
+      9 | // 测试登录表单存在
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:6:36
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/vue-visits-the-app-root-url-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/vue-visits-the-app-root-url-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('h1')
+    Expected: "Vue + Supabase 待办清单"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" with timeout 5000ms
+      - waiting for locator('h1')
+
+
+      4 | test('visits the app root url', async ({ page }) => {
+      5 |   await page.goto('/')
+    > 6 |   await expect(page.locator('h1')).toHaveText('Vue + Supabase 待办清单')
+        |                                    ^
+      7 | })
+      8 |
+      9 | // 测试登录表单存在
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:6:36
+
+  2) [chromium] › e2e/vue.spec.ts:10:1 › shows login form when not authenticated ───────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+      10 | test('shows login form when not authenticated', async ({ page }) => {
+      11 |   await page.goto('/')
+    > 12 |   await expect(page.locator('input[type="email"]')).toBeVisible()
+         |                                                     ^
+      13 |   await expect(page.locator('input[type="password"]')).toBeVisible()
+      14 |   await expect(page.getByRole('button', { name: '注册' })).toBeVisible()
+      15 |   await expect(page.getByRole('button', { name: '登录' })).toBeVisible()
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:12:53
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+      10 | test('shows login form when not authenticated', async ({ page }) => {
+      11 |   await page.goto('/')
+    > 12 |   await expect(page.locator('input[type="email"]')).toBeVisible()
+         |                                                     ^
+      13 |   await expect(page.locator('input[type="password"]')).toBeVisible()
+      14 |   await expect(page.getByRole('button', { name: '注册' })).toBeVisible()
+      15 |   await expect(page.getByRole('button', { name: '登录' })).toBeVisible()
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:12:53
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/vue-shows-login-form-when-not-authenticated-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/vue-shows-login-form-when-not-authenticated-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+      10 | test('shows login form when not authenticated', async ({ page }) => {
+      11 |   await page.goto('/')
+    > 12 |   await expect(page.locator('input[type="email"]')).toBeVisible()
+         |                                                     ^
+      13 |   await expect(page.locator('input[type="password"]')).toBeVisible()
+      14 |   await expect(page.getByRole('button', { name: '注册' })).toBeVisible()
+      15 |   await expect(page.getByRole('button', { name: '登录' })).toBeVisible()
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:12:53
+
+  3) [chromium] › e2e/vue.spec.ts:19:1 › does not show todo section when not authenticated ─────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Vue + Supabase 待办清单')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Vue + Supabase 待办清单')
+
+
+      19 | test('does not show todo section when not authenticated', async ({ page }) => {
+      20 |   await page.goto('/')
+    > 21 |   await expect(page.getByText('Vue + Supabase 待办清单')).toBeVisible()
+         |                                                       ^
+      22 |   await expect(page.getByText('登录/注册')).toBeVisible()
+      23 | })
+      24 |
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:21:55
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Vue + Supabase 待办清单')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Vue + Supabase 待办清单')
+
+
+      19 | test('does not show todo section when not authenticated', async ({ page }) => {
+      20 |   await page.goto('/')
+    > 21 |   await expect(page.getByText('Vue + Supabase 待办清单')).toBeVisible()
+         |                                                       ^
+      22 |   await expect(page.getByText('登录/注册')).toBeVisible()
+      23 | })
+      24 |
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:21:55
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/vue-does-not-show-todo-section-when-not-authenticated-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/vue-does-not-show-todo-section-when-not-authenticated-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Vue + Supabase 待办清单')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Vue + Supabase 待办清单')
+
+
+      19 | test('does not show todo section when not authenticated', async ({ page }) => {
+      20 |   await page.goto('/')
+    > 21 |   await expect(page.getByText('Vue + Supabase 待办清单')).toBeVisible()
+         |                                                       ^
+      22 |   await expect(page.getByText('登录/注册')).toBeVisible()
+      23 | })
+      24 |
+        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:21:55
+
+  3 failed
+    [chromium] › e2e/vue.spec.ts:4:1 › visits the app root url ─────────────────────────────────────
+    [chromium] › e2e/vue.spec.ts:10:1 › shows login form when not authenticated ────────────────────
+    [chromium] › e2e/vue.spec.ts:19:1 › does not show todo section when not authenticated ──────────
+Error: Process completed with exit code 1.
+1s
