@@ -92,9 +92,18 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, watch } from 'vue'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { createClient } from '@supabase/supabase-js'
+import type { Session } from '@supabase/supabase-js'
+
+interface Todo {
+  id: number
+  title: string
+  is_completed: boolean
+  user_id: string
+  created_at?: string
+}
 
 // 初始化 Supabase（从环境变量读取密钥）
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
@@ -114,12 +123,12 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey)
 console.log('Supabase 客户端已初始化')
 
 // 响应式数据
-const session = ref(null)
+const session = ref<Session | null>(null)
 const email = ref('')
 const password = ref('')
 const errorMsg = ref('')
 const newTodoTitle = ref('')
-const todos = ref([])
+const todos = ref<Todo[]>([])
 
 // 检查登录状态
 async function checkSession() {
@@ -216,7 +225,12 @@ async function addTodo() {
     return
   }
 
-  const { data, error } = await supabase
+  if (!session.value?.user?.id) {
+    alert('未登录或会话已过期')
+    return
+  }
+
+  const { error } = await supabase
     .from('todos')
     .insert([{
       title: newTodoTitle.value.trim(),
@@ -234,7 +248,7 @@ async function addTodo() {
 }
 
 // 更新待办状态（完成/未完成）
-async function updateTodoStatus(todo) {
+async function updateTodoStatus(todo: Todo) {
   const { error } = await supabase
     .from('todos')
     .update({ is_completed: todo.is_completed })
@@ -248,7 +262,7 @@ async function updateTodoStatus(todo) {
 }
 
 // 删除待办
-async function deleteTodo(todoId) {
+async function deleteTodo(todoId: number) {
   if (!confirm('确定删除这个待办吗？')) return
 
   const { error } = await supabase
