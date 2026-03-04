@@ -1,248 +1,98 @@
-
-1m 1s
-Run npx playwright test --project=chromium
-  npx playwright test --project=chromium
-  shell: /usr/bin/bash -e {0}
-  env:
-    CI: true
-
-Running 3 tests using 1 worker
-××F××F××F
-
-  1) [chromium] › e2e/vue.spec.ts:4:1 › visits the app root url ────────────────────────────────────
-
-    Error: expect(locator).toHaveText(expected) failed
-
-    Locator: locator('h1')
-    Expected: "Vue + Supabase 待办清单"
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toHaveText" with timeout 5000ms
-      - waiting for locator('h1')
-
-
-      4 | test('visits the app root url', async ({ page }) => {
-      5 |   await page.goto('/')
-    > 6 |   await expect(page.locator('h1')).toHaveText('Vue + Supabase 待办清单')
-        |                                    ^
-      7 | })
-      8 |
-      9 | // 测试登录表单存在
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:6:36
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toHaveText(expected) failed
-
-    Locator: locator('h1')
-    Expected: "Vue + Supabase 待办清单"
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toHaveText" with timeout 5000ms
-      - waiting for locator('h1')
-
-
-      4 | test('visits the app root url', async ({ page }) => {
-      5 |   await page.goto('/')
-    > 6 |   await expect(page.locator('h1')).toHaveText('Vue + Supabase 待办清单')
-        |                                    ^
-      7 | })
-      8 |
-      9 | // 测试登录表单存在
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:6:36
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/vue-visits-the-app-root-url-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/vue-visits-the-app-root-url-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toHaveText(expected) failed
-
-    Locator: locator('h1')
-    Expected: "Vue + Supabase 待办清单"
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toHaveText" with timeout 5000ms
-      - waiting for locator('h1')
-
-
-      4 | test('visits the app root url', async ({ page }) => {
-      5 |   await page.goto('/')
-    > 6 |   await expect(page.locator('h1')).toHaveText('Vue + Supabase 待办清单')
-        |                                    ^
-      7 | })
-      8 |
-      9 | // 测试登录表单存在
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:6:36
-
-  2) [chromium] › e2e/vue.spec.ts:10:1 › shows login form when not authenticated ───────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('input[type="email"]')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('input[type="email"]')
-
-
-      10 | test('shows login form when not authenticated', async ({ page }) => {
-      11 |   await page.goto('/')
-    > 12 |   await expect(page.locator('input[type="email"]')).toBeVisible()
-         |                                                     ^
-      13 |   await expect(page.locator('input[type="password"]')).toBeVisible()
-      14 |   await expect(page.getByRole('button', { name: '注册' })).toBeVisible()
-      15 |   await expect(page.getByRole('button', { name: '登录' })).toBeVisible()
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:12:53
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('input[type="email"]')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('input[type="email"]')
-
-
-      10 | test('shows login form when not authenticated', async ({ page }) => {
-      11 |   await page.goto('/')
-    > 12 |   await expect(page.locator('input[type="email"]')).toBeVisible()
-         |                                                     ^
-      13 |   await expect(page.locator('input[type="password"]')).toBeVisible()
-      14 |   await expect(page.getByRole('button', { name: '注册' })).toBeVisible()
-      15 |   await expect(page.getByRole('button', { name: '登录' })).toBeVisible()
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:12:53
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/vue-shows-login-form-when-not-authenticated-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/vue-shows-login-form-when-not-authenticated-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: locator('input[type="email"]')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for locator('input[type="email"]')
-
-
-      10 | test('shows login form when not authenticated', async ({ page }) => {
-      11 |   await page.goto('/')
-    > 12 |   await expect(page.locator('input[type="email"]')).toBeVisible()
-         |                                                     ^
-      13 |   await expect(page.locator('input[type="password"]')).toBeVisible()
-      14 |   await expect(page.getByRole('button', { name: '注册' })).toBeVisible()
-      15 |   await expect(page.getByRole('button', { name: '登录' })).toBeVisible()
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:12:53
-
-  3) [chromium] › e2e/vue.spec.ts:19:1 › does not show todo section when not authenticated ─────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByText('Vue + Supabase 待办清单')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByText('Vue + Supabase 待办清单')
-
-
-      19 | test('does not show todo section when not authenticated', async ({ page }) => {
-      20 |   await page.goto('/')
-    > 21 |   await expect(page.getByText('Vue + Supabase 待办清单')).toBeVisible()
-         |                                                       ^
-      22 |   await expect(page.getByText('登录/注册')).toBeVisible()
-      23 | })
-      24 |
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:21:55
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByText('Vue + Supabase 待办清单')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByText('Vue + Supabase 待办清单')
-
-
-      19 | test('does not show todo section when not authenticated', async ({ page }) => {
-      20 |   await page.goto('/')
-    > 21 |   await expect(page.getByText('Vue + Supabase 待办清单')).toBeVisible()
-         |                                                       ^
-      22 |   await expect(page.getByText('登录/注册')).toBeVisible()
-      23 | })
-      24 |
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:21:55
-
-    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
-    test-results/vue-does-not-show-todo-section-when-not-authenticated-chromium-retry1/trace.zip
-    Usage:
-
-        npx playwright show-trace test-results/vue-does-not-show-todo-section-when-not-authenticated-chromium-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toBeVisible() failed
-
-    Locator: getByText('Vue + Supabase 待办清单')
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByText('Vue + Supabase 待办清单')
-
-
-      19 | test('does not show todo section when not authenticated', async ({ page }) => {
-      20 |   await page.goto('/')
-    > 21 |   await expect(page.getByText('Vue + Supabase 待办清单')).toBeVisible()
-         |                                                       ^
-      22 |   await expect(page.getByText('登录/注册')).toBeVisible()
-      23 | })
-      24 |
-        at /home/runner/work/supabase-vue-vercel/supabase-vue-vercel/e2e/vue.spec.ts:21:55
-
-  3 failed
-    [chromium] › e2e/vue.spec.ts:4:1 › visits the app root url ─────────────────────────────────────
-    [chromium] › e2e/vue.spec.ts:10:1 › shows login form when not authenticated ────────────────────
-    [chromium] › e2e/vue.spec.ts:19:1 › does not show todo section when not authenticated ──────────
-Error: Process completed with exit code 1.
-1s
+2026-03-04T00:23:18.603Z	Initializing build environment...
+2026-03-04T00:23:20.977Z	Success: Finished initializing build environment
+2026-03-04T00:23:21.705Z	Cloning repository...
+2026-03-04T00:23:23.059Z	Restoring from dependencies cache
+2026-03-04T00:23:23.063Z	Restoring from build output cache
+2026-03-04T00:23:23.066Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2026-03-04T00:23:23.195Z	Installing project dependencies: npm clean-install --progress=false
+2026-03-04T00:23:37.568Z	
+2026-03-04T00:23:37.568Z	added 452 packages, and audited 453 packages in 14s
+2026-03-04T00:23:37.568Z	
+2026-03-04T00:23:37.569Z	111 packages are looking for funding
+2026-03-04T00:23:37.569Z	  run `npm fund` for details
+2026-03-04T00:23:37.574Z	
+2026-03-04T00:23:37.574Z	3 high severity vulnerabilities
+2026-03-04T00:23:37.575Z	
+2026-03-04T00:23:37.575Z	To address all issues, run:
+2026-03-04T00:23:37.575Z	  npm audit fix
+2026-03-04T00:23:37.575Z	
+2026-03-04T00:23:37.575Z	Run `npm audit` for details.
+2026-03-04T00:23:37.862Z	Executing user build command: npm run build
+2026-03-04T00:23:38.184Z	
+2026-03-04T00:23:38.185Z	> supabase-vue-vercel@0.0.0 build
+2026-03-04T00:23:38.185Z	> run-p type-check "build-only {@}" --
+2026-03-04T00:23:38.185Z	
+2026-03-04T00:23:18.603Z	Initializing build environment...
+2026-03-04T00:23:20.977Z	Success: Finished initializing build environment
+2026-03-04T00:23:21.705Z	Cloning repository...
+2026-03-04T00:23:23.059Z	Restoring from dependencies cache
+2026-03-04T00:23:23.063Z	Restoring from build output cache
+2026-03-04T00:23:23.066Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2026-03-04T00:23:23.195Z	Installing project dependencies: npm clean-install --progress=false
+2026-03-04T00:23:37.568Z	
+2026-03-04T00:23:37.568Z	added 452 packages, and audited 453 packages in 14s
+2026-03-04T00:23:37.568Z	
+2026-03-04T00:23:37.569Z	111 packages are looking for funding
+2026-03-04T00:23:37.569Z	  run `npm fund` for details
+2026-03-04T00:23:37.574Z	
+2026-03-04T00:23:37.574Z	3 high severity vulnerabilities
+2026-03-04T00:23:37.575Z	
+2026-03-04T00:23:37.575Z	To address all issues, run:
+2026-03-04T00:23:37.575Z	  npm audit fix
+2026-03-04T00:23:37.575Z	
+2026-03-04T00:23:37.575Z	Run `npm audit` for details.
+2026-03-04T00:23:37.862Z	Executing user build command: npm run build
+2026-03-04T00:23:38.184Z	
+2026-03-04T00:23:38.185Z	> supabase-vue-vercel@0.0.0 build
+2026-03-04T00:23:38.185Z	> run-p type-check "build-only {@}" --
+2026-03-04T00:23:38.185Z	
+2026-03-04T00:23:38.429Z	
+2026-03-04T00:23:38.434Z	> supabase-vue-vercel@0.0.0 build-only
+2026-03-04T00:23:38.434Z	> vite build
+2026-03-04T00:23:38.435Z	
+2026-03-04T00:23:38.442Z	
+2026-03-04T00:23:38.442Z	> supabase-vue-vercel@0.0.0 type-check
+2026-03-04T00:23:38.442Z	> vue-tsc --build
+2026-03-04T00:23:38.443Z	
+2026-03-04T00:23:39.797Z	vite v7.3.1 building client environment for production...
+2026-03-04T00:23:39.962Z	transforming...
+2026-03-04T00:23:43.264Z	✓ 80 modules transformed.
+2026-03-04T00:23:43.442Z	rendering chunks...
+2026-03-04T00:23:43.518Z	computing gzip size...
+2026-03-04T00:23:43.535Z	dist/index.html                       0.43 kB │ gzip:  0.28 kB
+2026-03-04T00:23:43.535Z	dist/assets/AboutView-DhlS7raN.css    0.08 kB │ gzip:  0.10 kB
+2026-03-04T00:23:43.535Z	dist/assets/index-CQWEThSM.css        3.05 kB │ gzip:  1.03 kB
+2026-03-04T00:23:43.535Z	dist/assets/AboutView-4wADhClr.js     0.24 kB │ gzip:  0.21 kB
+2026-03-04T00:23:43.535Z	dist/assets/index-DEPMPxv1.js       101.08 kB │ gzip: 38.90 kB
+2026-03-04T00:23:43.535Z	✓ built in 3.67s
+2026-03-04T00:23:45.550Z	Success: Build command completed
+2026-03-04T00:23:45.736Z	Executing user deploy command: npx wrangler versions upload --assets=./dist
+2026-03-04T00:23:47.260Z	npm warn exec The following package was not found and will be installed: wrangler@4.70.0
+2026-03-04T00:24:00.929Z	
+2026-03-04T00:24:00.930Z	 ⛅️ wrangler 4.70.0
+2026-03-04T00:24:00.931Z	───────────────────
+2026-03-04T00:24:02.203Z	▲ [WARNING] You are about to upload a Worker Version that was last published via the Cloudflare Dashboard.
+2026-03-04T00:24:02.203Z	
+2026-03-04T00:24:02.204Z	  Edits that have been made via the dashboard will be overridden by your local code and config.
+2026-03-04T00:24:02.205Z	
+2026-03-04T00:24:02.205Z	
+2026-03-04T00:24:02.205Z	? Would you like to continue?
+2026-03-04T00:24:02.205Z	🤖 Using fallback value in non-interactive context: yes
+2026-03-04T00:24:02.225Z	🌀 Building list of assets...
+2026-03-04T00:24:02.227Z	✨ Read 9 files from the assets directory /opt/buildhome/repo/dist
+2026-03-04T00:24:02.241Z	🌀 Starting asset upload...
+2026-03-04T00:24:04.347Z	No updated asset files to upload. Proceeding with deployment...
+2026-03-04T00:24:04.349Z	Total Upload: 0.33 KiB / gzip: 0.24 KiB
+2026-03-04T00:24:09.508Z	
+2026-03-04T00:24:09.510Z	✘ [ERROR] A request to the Cloudflare API (/accounts/3fc3b65dc92026c7a142d054a4079ae1/workers/scripts/supabase-vue-vercel/versions) failed.
+2026-03-04T00:24:09.511Z	
+2026-03-04T00:24:09.511Z	  Invalid _redirects configuration:
+2026-03-04T00:24:09.511Z	  Line 3: Valid status codes are 200, 301, 302 (default), 303, 307, or 308. Got 404. [code: 10021]
+2026-03-04T00:24:09.511Z	  To learn more about this error, visit: https://developers.cloudflare.com/workers/observability/errors/#validation-errors-10021
+2026-03-04T00:24:09.511Z	
+2026-03-04T00:24:09.511Z	  
+2026-03-04T00:24:09.511Z	  If you think this is a bug, please open an issue at: https://github.com/cloudflare/workers-sdk/issues/new/choose
+2026-03-04T00:24:09.511Z	
+2026-03-04T00:24:09.511Z	
+2026-03-04T00:24:09.541Z	🪵  Logs were written to "/opt/buildhome/.config/.wrangler/logs/wrangler-2026-03-04_00-24-00_044.log"
+2026-03-04T00:24:09.647Z	Failed: error occurred while running deploy command
